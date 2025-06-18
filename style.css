@@ -1,0 +1,152 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #4CAF50; /* Verde vibrante */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 2.8em;
+}
+
+header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+main {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+section {
+    background-color: #fff;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    color: #3f51b5; /* Azul institucional */
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.document-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background-color: #64b5f6; /* Azul claro para botões */
+    color: white;
+    text-decoration: none;
+    border-radius: 10px; /* Cantos um pouco mais arredondados */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra mais visível */
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent; /* Borda transparente para efeito no hover */
+}
+
+.document-button:hover {
+    background-color: #2196f3; /* Azul mais escuro no hover */
+    transform: translateY(-7px); /* Efeito de elevação mais pronunciado */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Sombra mais intensa no hover */
+    border-color: #1976d2; /* Borda azul mais escura no hover */
+}
+
+.document-button .icon {
+    font-size: 3.8em; /* Ícone um pouco maior */
+    margin-bottom: 12px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.document-button:hover .icon {
+    transform: scale(1.1); /* Ícone cresce um pouco no hover */
+}
+
+.document-button .text {
+    font-size: 1.15em; /* Texto um pouco maior */
+    font-weight: bold;
+    text-transform: uppercase; /* Texto em maiúsculas */
+    letter-spacing: 0.5px; /* Pequeno espaçamento entre letras */
+    transition: color 0.2s ease;
+}
+
+.document-button:hover .text {
+    color: #e0e0e0; /* Pequena mudança de cor no texto no hover */
+}
+
+/* Efeito de "Onda" ou "Brilho" ao Clicar */
+.document-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(1) translate(-50%, -50%);
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.document-button:active::after {
+    transform: scale(20) translate(-50%, -50%);
+    opacity: 1;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    header p {
+        font-size: 1em;
+    }
+    section h2 {
+        font-size: 1.6em;
+    }
+    .document-button {
+        padding: 20px;
+        height: 130px;
+    }
+    .document-button .icon {
+        font-size: 3em;
+    }
+    .document-button .text {
+        font-size: 1em;
+    }
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
+}
