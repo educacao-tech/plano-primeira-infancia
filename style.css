@@ -1,18 +1,98 @@
+:root {
+    /* Cores Principais */
+    --primary-color: #4f46e5; /* Indigo 600 */
+    --primary-hover: #4338ca; /* Indigo 700 */
+    --secondary-color: #10b981; /* Teal 500 */
+    --header-gradient: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%); /* Verde */
+    
+    /* Cores de Fundo e Texto */
+    --bg-body: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #5a6a7e; /* Ajustado para melhor contraste (original: #64748b) */
+    --text-light: #ffffff;
+    --footer-bg: var(--text-main);
+    --footer-text: var(--text-light);
+
+    /* Espaçamento e Bordas */
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    
+    /* Transições */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode Variables */
+body[data-theme="dark"] {
+    --primary-color: #6366f1; /* Ajustado para melhor contraste (original: #818cf8) */
+    --primary-hover: #6366f1; /* Indigo 500 */
+    --secondary-color: #2dd4bf; /* Teal 300 */
+    --header-gradient: linear-gradient(135deg, #1f2937 0%, #111827 100%); /* Cinza escuro */
+
+    --bg-body: #1a202c; /* Dark Gray */
+    --bg-card: #2d3748; /* Slightly lighter dark gray */
+    --text-main: #e2e8f0; /* Light gray */
+    --text-muted: #8f9bb3; /* Ajustado para melhor contraste (original: #a0aec0) */
+    --text-light: #cbd5e0; /* Off-white for header/footer text */
+    --footer-bg: var(--bg-body); /* Fundo do rodapé escuro */
+    --footer-text: var(--text-main); /* Texto do rodapé claro */
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3);
+}
+
+/* Skip Link - Acessibilidade */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 12px 24px;
+    z-index: 2000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    transition: top 0.3s ease;
+    white-space: nowrap;
+    box-shadow: var(--shadow-lg);
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+#main-content:focus {
+    outline: none;
+}
+
+/* Global Transitions for smooth theme change */
 body {
-    font-family: 'Arial', sans-serif;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
-    color: #333;
+    background-color: var(--bg-body);
+    color: var(--text-main);
     line-height: 1.6;
 }
 
 header {
-    background-color: #4CAF50; /* Verde vibrante */
-    color: white;
-    padding: 30px 10px;
+    background: var(--header-gradient);
+    color: var(--text-light);
+    padding: 60px 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
+    position: relative; /* Para posicionar o botão de toggle */
 }
 
 header h1 {
@@ -25,31 +105,31 @@ header p {
     opacity: 0.9;
 }
 
-main {
-    max-width: 960px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
 section {
-    background-color: #fff;
+    background-color: var(--bg-card);
     padding: 30px;
     margin-bottom: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
 }
 
 section h2 {
-    color: #3f51b5; /* Azul institucional */
+    color: var(--primary-color);
     font-size: 2em;
     margin-top: 0;
     margin-bottom: 20px;
     text-align: center;
 }
 
+.main-content { /* Adicionado para envolver as sections */
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
 .button-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
     justify-content: center;
     margin-top: 25px;
@@ -61,24 +141,22 @@ section h2 {
     align-items: center;
     justify-content: center;
     padding: 25px;
-    background-color: #64b5f6; /* Azul claro para botões */
-    color: white;
+    background-color: var(--bg-card);
+    color: var(--text-main);
     text-decoration: none;
-    border-radius: 10px; /* Cantos um pouco mais arredondados */
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra mais visível */
-    height: 150px;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid transparent; /* Borda transparente para efeito no hover */
+    box-shadow: var(--shadow-md);
+    min-height: 150px;
+    border: 1px solid #e2e8f0;
 }
 
 .document-button:hover {
-    background-color: #2196f3; /* Azul mais escuro no hover */
-    transform: translateY(-7px); /* Efeito de elevação mais pronunciado */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Sombra mais intensa no hover */
-    border-color: #1976d2; /* Borda azul mais escura no hover */
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+    background-color: var(--bg-body); /* Usa a cor de fundo do corpo para o hover */
 }
 
 .document-button .icon {
@@ -125,6 +203,44 @@ section h2 {
     transition: transform 0.4s ease-out, opacity 0.4s ease-out;
 }
 
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    margin-top: 50px;
+}
+
+.carousel-indicators {
+    display: none; /* Escondido por padrão em desktop/tablet */
+}
+
+/* Dark Mode Toggle Button */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    color: var(--primary-color);
+}
+
+#theme-toggle .icon-light,
+body[data-theme="dark"] #theme-toggle .icon-dark {
+    display: inline-block;
+}
+body[data-theme="dark"] #theme-toggle .icon-light,
+#theme-toggle .icon-dark {
+    display: none;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     header h1 {
@@ -138,7 +254,7 @@ section h2 {
     }
     .document-button {
         padding: 20px;
-        height: 130px;
+        min-height: 130px;
     }
     .document-button .icon {
         font-size: 3em;
@@ -146,7 +262,92 @@ section h2 {
     .document-button .text {
         font-size: 1em;
     }
+    /* No tablet (até 768px), mantemos 2 colunas se houver espaço */
     .button-grid {
-        grid-template-columns: 1fr;
+        gap: 15px;
     }
+}
+
+@media (max-width: 480px) {
+    /* Apenas em celulares pequenos forçamos uma única coluna */
+    .button-grid {
+        display: grid;
+        grid-auto-flow: column; /* Força os itens a ficarem em linha */
+        grid-auto-columns: 85%; /* Cada card ocupa 85% da largura da tela */
+        gap: 15px;
+        overflow-x: auto; /* Habilita rolagem horizontal */
+        scroll-snap-type: x mandatory; /* Ativa o efeito de "imã" no carrossel */
+        padding: 20px 0; /* Espaço para as sombras não serem cortadas */
+        scrollbar-width: none; /* Esconde scrollbar no Firefox */
+        -ms-overflow-style: none; /* Esconde scrollbar no IE/Edge */
+    }
+    .button-grid::-webkit-scrollbar {
+        display: none; /* Esconde scrollbar no Chrome/Safari */
+    }
+    .document-button {
+        scroll-snap-align: center; /* Centraliza o card ao rolar */
+    }
+
+    .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--text-muted);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .dot:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 3px;
+    }
+
+    .dot.active {
+        background-color: var(--primary-color);
+        transform: scale(1.3);
+    }
+}
+
+/* Botão Voltar ao Topo */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.1);
 }

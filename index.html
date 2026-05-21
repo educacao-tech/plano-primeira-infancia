@@ -7,36 +7,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
     <header>
         <h1>Plano Municipal da Primeira Infância</h1>
         <p>Documentos e informações importantes para o desenvolvimento das crianças.</p>
+        <button id="theme-toggle" aria-label="Alternar tema">
+            <span class="icon-light">☀️</span><span class="icon-dark">🌙</span>
+        </button>
     </header>
 
-    <main>
+    <main class="main-content" id="main-content" tabindex="-1">
         <section class="document-section">
             <h2>Documentos do Plano</h2>
-            <div class="button-grid">
-                <a href="https://drive.google.com/file/d/1D9DYByrbna8oaFVwsUDexUzgxKg1xA_9/view?usp=share_link" target="_blank" class="document-button">
+            <div class="button-grid" role="region" aria-roledescription="carousel" aria-label="Documentos importantes">
+                <a id="slide-1" href="https://drive.google.com/file/d/1D9DYByrbna8oaFVwsUDexUzgxKg1xA_9/view?usp=share_link" target="_blank" rel="noopener noreferrer" class="document-button" role="group" aria-roledescription="slide" aria-label="1 de 6: PLANO COMPLETO (PDF)">
                     <span class="icon">📄</span>
                     <span class="text">PLANO COMPLETO (PDF)</span>
                 </a>
-                <a href="https://drive.google.com/file/d/1DBheRQEO3oXcJejUGJTrVgdz4GEk6vtg/view?usp=share_link" target="_blank" class="document-button">
+                <a id="slide-2" href="https://drive.google.com/file/d/1DBheRQEO3oXcJejUGJTrVgdz4GEk6vtg/view?usp=share_link" target="_blank" rel="noopener noreferrer" class="document-button" role="group" aria-roledescription="slide" aria-label="2 de 6: LEI 3863 - ANEXO 1">
                     <span class="icon">📊</span>
                     <span class="text">LEI 3863 - ANEXO 1</span>
                 </a>
-                <a href="https://drive.google.com/file/d/1DHB_Wcc0d9mf3H4vTUmDk_IE2ZXjBNgH/view?usp=share_link" target="_blank" class="document-button">
+                <a id="slide-3" href="https://drive.google.com/file/d/1DHB_Wcc0d9mf3H4vTUmDk_IE2ZXjBNgH/view?usp=share_link" target="_blank" rel="noopener noreferrer" class="document-button" role="group" aria-roledescription="slide" aria-label="3 de 6: LEI 3863 - ANEXO 2">
                     <span class="icon">📜</span>
                     <span class="text">LEI 3863 - ANEXO 2</span>
                 </a>
-                <a href="https://drive.google.com/file/d/1CC7W7k_XvWNW1j4j1ULJv4oW5eSVdRcX/view?usp=sharing" target="_blank" class="document-button">
+                <a id="slide-4" href="https://drive.google.com/file/d/1CC7W7k_XvWNW1j4j1ULJv4oW5eSVdRcX/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="document-button" role="group" aria-roledescription="slide" aria-label="4 de 6: AVALIAÇÃO DO PRIMEIRO ANO 2023">
                     <span class="icon">📌</span>
                     <span class="text">AVALIAÇÃO DO PRIMEIRO ANO 2023</span>
                 </a>
-                <a href="https://drive.google.com/file/d/1LqDc1iHpS153Bot6BR7HyO6wlrKgdaUN/view?usp=sharing" target="_blank" class="document-button">
+                <a id="slide-5" href="https://drive.google.com/file/d/1LqDc1iHpS153Bot6BR7HyO6wlrKgdaUN/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="document-button" role="group" aria-roledescription="slide" aria-label="5 de 6: AVALIAÇÃO DO TERCEIRO ANO 2025">
                     <span class="icon">⭐</span>
                     <span class="text">AVALIAÇÃO DO TERCEIRO ANO 2025</span>
                 </a>
+                <a id="slide-6" href="https://drive.google.com/file/d/14JsSXW8Pgt52_hHvWMtIR2atIobbnzQR/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="document-button" role="group" aria-roledescription="slide" aria-label="6 de 6: AVALIAÇÃO DO QUARTO ANO 2026">
+                    <span class="icon">⭐</span>
+                    <span class="text">AVALIAÇÃO DO QUARTO ANO 2026</span>
+                </a>
             </div>
+            <div class="carousel-indicators" id="carousel-indicators" role="tablist" aria-label="Slides do carrossel"></div>
         </section>
 
         <section class="info-section">
@@ -50,5 +59,102 @@
         <p>&copy; 2025 Município de Batatais. Todos os direitos reservados.</p>
         <p>Desenvolvido para o Plano Municipal da Primeira Infância.</p>
     </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Voltar ao topo">
+        <span aria-hidden="true">↑</span>
+    </button>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Verifica o tema preferido do usuário ou o tema salvo
+        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+        if (currentTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Intersection Observer para animação no scroll
+        const observerOptions = {
+            threshold: 0.1 // Dispara quando 10% do elemento estiver visível
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    // Opcional: parar de observar após animar
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.document-button').forEach(button => {
+            observer.observe(button);
+        });
+
+        // Gerenciamento dos indicadores do carrossel (Mobile)
+        const grid = document.querySelector('.button-grid');
+        const indicatorsContainer = document.getElementById('carousel-indicators');
+        const cards = document.querySelectorAll('.document-button');
+
+        if (grid && indicatorsContainer && cards.length > 0) {
+            // Cria os pontos dinamicamente com base no número de cards
+            cards.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.classList.add('dot');
+                dot.setAttribute('role', 'tab');
+                dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+                dot.setAttribute('aria-controls', `slide-${i + 1}`);
+                dot.setAttribute('aria-label', `Ir para o documento ${i + 1}`);
+                
+                if (i === 0) dot.classList.add('active');
+                
+                dot.addEventListener('click', () => {
+                    const cardWidth = cards[0].offsetWidth + 15; // Largura + gap
+                    grid.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+                });
+                indicatorsContainer.appendChild(dot);
+            });
+
+            // Atualiza o ponto ativo durante a rolagem
+            grid.addEventListener('scroll', () => {
+                const cardWidth = cards[0].offsetWidth + 15;
+                const index = Math.round(grid.scrollLeft / cardWidth);
+                const dots = indicatorsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, i) => {
+                    const isActive = i === index;
+                    dot.classList.toggle('active', isActive);
+                    dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+            });
+        }
+
+        // Botão Voltar ao Topo
+        const backToTop = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
