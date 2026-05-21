@@ -150,6 +150,12 @@ section h2 {
     box-shadow: var(--shadow-md);
     min-height: 150px;
     border: 1px solid #e2e8f0;
+    position: relative; /* Necessário para o efeito ::after */
+    overflow: hidden;   /* Garante que o ripple não saia do botão */
+    
+    /* Estado inicial para animação de scroll */
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .document-button:hover {
@@ -158,6 +164,31 @@ section h2 {
     border-color: var(--primary-color);
     background-color: var(--bg-body); /* Usa a cor de fundo do corpo para o hover */
 }
+
+/* Classe disparada pelo JavaScript no scroll */
+.document-button.show {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Definição da Animação */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delays escalonados para a animação de entrada */
+.document-button.show:nth-child(1) { animation-delay: 0.1s; }
+.document-button.show:nth-child(2) { animation-delay: 0.2s; }
+.document-button.show:nth-child(3) { animation-delay: 0.3s; }
+.document-button.show:nth-child(4) { animation-delay: 0.4s; }
+.document-button.show:nth-child(5) { animation-delay: 0.5s; }
+.document-button.show:nth-child(6) { animation-delay: 0.6s; }
 
 .document-button .icon {
     font-size: 3.8em; /* Ícone um pouco maior */
@@ -175,11 +206,11 @@ section h2 {
     font-weight: bold;
     text-transform: uppercase; /* Texto em maiúsculas */
     letter-spacing: 0.5px; /* Pequeno espaçamento entre letras */
-    transition: color 0.2s ease;
+    transition: color var(--transition);
 }
 
 .document-button:hover .text {
-    color: #e0e0e0; /* Pequena mudança de cor no texto no hover */
+    color: var(--primary-color); /* Melhor contraste e consistência */
 }
 
 /* Efeito de "Onda" ou "Brilho" ao Clicar */
