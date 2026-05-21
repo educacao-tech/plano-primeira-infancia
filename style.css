@@ -25,6 +25,19 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Definição de paletas para ícones coloridos (COLRv1) */
+@font-palette-values --icon-light {
+    font-family: 'Inter'; /* Substitua pelo nome da sua fonte de ícones colorida */
+    base-palette: 0;
+}
+
+@font-palette-values --icon-dark {
+    font-family: 'Inter'; 
+    base-palette: 1; /* Geralmente fontes coloridas trazem a paleta escura no índice 1 */
+    /* Você também pode sobrescrever cores específicas da fonte se necessário: */
+    /* override-colors: 0 var(--primary-color), 1 #ffffff; */
+}
+
 /* Dark Mode Variables */
 body[data-theme="dark"] {
     --primary-color: #6366f1; /* Ajustado para melhor contraste (original: #818cf8) */
@@ -195,6 +208,12 @@ section h2 {
     margin-bottom: 12px;
     line-height: 1;
     transition: transform 0.2s ease;
+    /* Aplica a paleta padrão */
+    font-palette: --icon-light;
+}
+
+body[data-theme="dark"] .document-button .icon {
+    font-palette: --icon-dark;
 }
 
 .document-button:hover .icon {
